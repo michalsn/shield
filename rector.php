@@ -45,6 +45,7 @@ use Rector\EarlyReturn\Rector\Return_\PreparedValueToEarlyReturnRector;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Php73\Rector\FuncCall\StringifyStrNeedlesRector;
 use Rector\PHPUnit\AnnotationsToAttributes\Rector\Class_\AnnotationWithValueToAttributeRector;
+use Rector\PHPUnit\CodeQuality\Rector\Class_\NarrowUnusedSetUpDefinedPropertyRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\YieldDataProviderRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Privatization\Rector\Property\PrivatizeFinalClassPropertyRector;
@@ -131,6 +132,9 @@ return static function (RectorConfig $rectorConfig): void {
             // To check old Email Config file
             __DIR__ . '/src/Commands/Setup.php',
         ],
+
+        // buggy with default value
+        NarrowUnusedSetUpDefinedPropertyRector::class,
     ]);
 
     // auto import fully qualified class names
