@@ -33,8 +33,6 @@ final class RegisterTest extends DatabaseTestCase
     use FeatureTestTrait;
     use FakeUser;
 
-    protected $namespace;
-
     protected function setUp(): void
     {
         Services::reset(true);

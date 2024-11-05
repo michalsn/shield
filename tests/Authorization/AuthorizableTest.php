@@ -29,7 +29,6 @@ final class AuthorizableTest extends DatabaseTestCase
     use FakeUser;
 
     protected $refresh = true;
-    protected $namespace;
 
     protected function setUp(): void
     {

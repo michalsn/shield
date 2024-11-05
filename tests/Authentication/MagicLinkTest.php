@@ -30,7 +30,6 @@ final class MagicLinkTest extends DatabaseTestCase
     use FeatureTestTrait;
 
     protected $refresh = true;
-    protected $namespace;
 
     protected function setUp(): void
     {
