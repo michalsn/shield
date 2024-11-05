@@ -31,8 +31,6 @@ final class JWTFilterTest extends DatabaseTestCase
 {
     use FeatureTestTrait;
 
-    protected $namespace;
-
     protected function setUp(): void
     {
         Services::reset(true);
