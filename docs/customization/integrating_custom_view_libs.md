@@ -16,7 +16,7 @@ use CodeIgniter\Shield\Controllers\LoginController;
 
 class MyLoginController extends LoginController
 {
-    use Themable;
+    use Themeable;
 
     protected function view(string $view, array $data = [], array $options = []): string
     {
