@@ -9,7 +9,7 @@ on:
       - '.github/workflows/phpcsfixer.yml'
   push:
     branches:
-      - develop
+      - testing
     paths:
       - '**.php'
       - '.github/workflows/phpcsfixer.yml'

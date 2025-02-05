@@ -10,7 +10,7 @@ on:
       - '.github/workflows/unused.yml'
   push:
     branches:
-      - develop
+      - testing
     paths:
       - '**.php'
       - 'composer.*'

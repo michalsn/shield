@@ -11,7 +11,7 @@ on:
       - '.github/workflows/psalm.yml'
   push:
     branches:
-      - develop
+      - testing
     paths:
       - '**.php'
       - 'composer.*'
