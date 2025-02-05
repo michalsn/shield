@@ -142,6 +142,12 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/src/Authentication/Passwords/NothingPersonalValidator.php',
 ];
 $ignoreErrors[] = [
+	// identifier: varTag.type
+	'message' => '#^PHPDoc tag @var with type string is not subtype of type uppercase\\-string\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Authentication/Passwords/PwnedValidator.php',
+];
+$ignoreErrors[] = [
 	// identifier: booleanAnd.rightNotBoolean
 	'message' => '#^Only booleans are allowed in &&, CodeIgniter\\\\Shield\\\\Entities\\\\User\\|null given on the right side\\.$#',
 	'count' => 1,
@@ -158,6 +164,18 @@ $ignoreErrors[] = [
 	'message' => '#^Return type \\(int\\|string\\|null\\) of method CodeIgniter\\\\Shield\\\\Collectors\\\\Auth\\:\\:getBadgeValue\\(\\) should be covariant with return type \\(int\\|null\\) of method CodeIgniter\\\\Debug\\\\Toolbar\\\\Collectors\\\\BaseCollector\\:\\:getBadgeValue\\(\\)$#',
 	'count' => 1,
 	'path' => __DIR__ . '/src/Collectors/Auth.php',
+];
+$ignoreErrors[] = [
+	// identifier: property.nonObject
+	'message' => '#^Cannot access property \\$id on array\\<string, string\\>\\|object\\.$#',
+	'count' => 7,
+	'path' => __DIR__ . '/src/Commands/Hmac.php',
+];
+$ignoreErrors[] = [
+	// identifier: property.nonObject
+	'message' => '#^Cannot access property \\$secret2 on array\\<string, string\\>\\|object\\.$#',
+	'count' => 11,
+	'path' => __DIR__ . '/src/Commands/Hmac.php',
 ];
 $ignoreErrors[] = [
 	// identifier: codeigniter.factoriesClassConstFetch
@@ -275,10 +293,88 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/src/Filters/AbstractAuthFilter.php',
 ];
 $ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(CodeIgniter\\\\HTTP\\\\RedirectResponse\\|void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\AbstractAuthFilter\\:\\:before\\(\\) should be covariant with return type \\(CodeIgniter\\\\HTTP\\\\RequestInterface\\|CodeIgniter\\\\HTTP\\\\ResponseInterface\\|string\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:before\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/AbstractAuthFilter.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\AbstractAuthFilter\\:\\:after\\(\\) should be compatible with return type \\(CodeIgniter\\\\HTTP\\\\ResponseInterface\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:after\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/AbstractAuthFilter.php',
+];
+$ignoreErrors[] = [
 	// identifier: return.type
 	'message' => '#^Method CodeIgniter\\\\Shield\\\\Filters\\\\AuthRates\\:\\:before\\(\\) should return CodeIgniter\\\\HTTP\\\\RedirectResponse\\|void but returns CodeIgniter\\\\HTTP\\\\ResponseInterface\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/src/Filters/AuthRates.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(CodeIgniter\\\\HTTP\\\\RedirectResponse\\|void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\AuthRates\\:\\:before\\(\\) should be covariant with return type \\(CodeIgniter\\\\HTTP\\\\RequestInterface\\|CodeIgniter\\\\HTTP\\\\ResponseInterface\\|string\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:before\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/AuthRates.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\AuthRates\\:\\:after\\(\\) should be compatible with return type \\(CodeIgniter\\\\HTTP\\\\ResponseInterface\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:after\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/AuthRates.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(CodeIgniter\\\\HTTP\\\\RedirectResponse\\|void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\ChainAuth\\:\\:before\\(\\) should be covariant with return type \\(CodeIgniter\\\\HTTP\\\\RequestInterface\\|CodeIgniter\\\\HTTP\\\\ResponseInterface\\|string\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:before\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/ChainAuth.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\ChainAuth\\:\\:after\\(\\) should be compatible with return type \\(CodeIgniter\\\\HTTP\\\\ResponseInterface\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:after\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/ChainAuth.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(CodeIgniter\\\\HTTP\\\\RedirectResponse\\|void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\ForcePasswordResetFilter\\:\\:before\\(\\) should be covariant with return type \\(CodeIgniter\\\\HTTP\\\\RequestInterface\\|CodeIgniter\\\\HTTP\\\\ResponseInterface\\|string\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:before\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/ForcePasswordResetFilter.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\ForcePasswordResetFilter\\:\\:after\\(\\) should be compatible with return type \\(CodeIgniter\\\\HTTP\\\\ResponseInterface\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:after\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/ForcePasswordResetFilter.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\HmacAuth\\:\\:after\\(\\) should be compatible with return type \\(CodeIgniter\\\\HTTP\\\\ResponseInterface\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:after\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/HmacAuth.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(CodeIgniter\\\\HTTP\\\\ResponseInterface\\|void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\JWTAuth\\:\\:before\\(\\) should be covariant with return type \\(CodeIgniter\\\\HTTP\\\\RequestInterface\\|CodeIgniter\\\\HTTP\\\\ResponseInterface\\|string\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:before\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/JWTAuth.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\JWTAuth\\:\\:after\\(\\) should be compatible with return type \\(CodeIgniter\\\\HTTP\\\\ResponseInterface\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:after\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/JWTAuth.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(CodeIgniter\\\\HTTP\\\\RedirectResponse\\|void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\SessionAuth\\:\\:before\\(\\) should be covariant with return type \\(CodeIgniter\\\\HTTP\\\\RequestInterface\\|CodeIgniter\\\\HTTP\\\\ResponseInterface\\|string\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:before\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/SessionAuth.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\SessionAuth\\:\\:after\\(\\) should be compatible with return type \\(CodeIgniter\\\\HTTP\\\\ResponseInterface\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:after\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/SessionAuth.php',
 ];
 $ignoreErrors[] = [
 	// identifier: empty.notAllowed
@@ -290,6 +386,18 @@ $ignoreErrors[] = [
 	// identifier: return.type
 	'message' => '#^Method CodeIgniter\\\\Shield\\\\Filters\\\\TokenAuth\\:\\:before\\(\\) should return CodeIgniter\\\\HTTP\\\\RedirectResponse\\|void but returns CodeIgniter\\\\HTTP\\\\ResponseInterface\\.$#',
 	'count' => 2,
+	'path' => __DIR__ . '/src/Filters/TokenAuth.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(CodeIgniter\\\\HTTP\\\\RedirectResponse\\|void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\TokenAuth\\:\\:before\\(\\) should be covariant with return type \\(CodeIgniter\\\\HTTP\\\\RequestInterface\\|CodeIgniter\\\\HTTP\\\\ResponseInterface\\|string\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:before\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/src/Filters/TokenAuth.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(void\\) of method CodeIgniter\\\\Shield\\\\Filters\\\\TokenAuth\\:\\:after\\(\\) should be compatible with return type \\(CodeIgniter\\\\HTTP\\\\ResponseInterface\\|null\\) of method CodeIgniter\\\\Filters\\\\FilterInterface\\:\\:after\\(\\)$#',
+	'count' => 1,
 	'path' => __DIR__ . '/src/Filters/TokenAuth.php',
 ];
 $ignoreErrors[] = [
@@ -326,19 +434,19 @@ $ignoreErrors[] = [
 ];
 $ignoreErrors[] = [
 	// identifier: method.childParameterType
-	'message' => '#^Parameter \\#1 \\$row \\(array\\|CodeIgniter\\\\Shield\\\\Entities\\\\User\\) of method CodeIgniter\\\\Shield\\\\Models\\\\UserModel\\:\\:insert\\(\\) should be contravariant with parameter \\$row \\(array\\<int\\|string, float\\|int\\|object\\|string\\|null\\>\\|object\\|null\\) of method CodeIgniter\\\\Model\\:\\:insert\\(\\)$#',
+	'message' => '#^Parameter \\#1 \\$row \\(array\\|CodeIgniter\\\\Shield\\\\Entities\\\\User\\) of method CodeIgniter\\\\Shield\\\\Models\\\\UserModel\\:\\:insert\\(\\) should be contravariant with parameter \\$row \\(array\\<int\\|string, bool\\|float\\|int\\|object\\|string\\|null\\>\\|object\\|null\\) of method CodeIgniter\\\\Model\\:\\:insert\\(\\)$#',
 	'count' => 1,
 	'path' => __DIR__ . '/src/Models/UserModel.php',
 ];
 $ignoreErrors[] = [
 	// identifier: method.childParameterType
-	'message' => '#^Parameter \\#1 \\$row \\(array\\|CodeIgniter\\\\Shield\\\\Entities\\\\User\\) of method CodeIgniter\\\\Shield\\\\Models\\\\UserModel\\:\\:save\\(\\) should be contravariant with parameter \\$row \\(array\\<int\\|string, float\\|int\\|object\\|string\\|null\\>\\|object\\) of method CodeIgniter\\\\BaseModel\\:\\:save\\(\\)$#',
+	'message' => '#^Parameter \\#1 \\$row \\(array\\|CodeIgniter\\\\Shield\\\\Entities\\\\User\\) of method CodeIgniter\\\\Shield\\\\Models\\\\UserModel\\:\\:save\\(\\) should be contravariant with parameter \\$row \\(array\\<int\\|string, bool\\|float\\|int\\|object\\|string\\|null\\>\\|object\\) of method CodeIgniter\\\\BaseModel\\:\\:save\\(\\)$#',
 	'count' => 1,
 	'path' => __DIR__ . '/src/Models/UserModel.php',
 ];
 $ignoreErrors[] = [
 	// identifier: method.childParameterType
-	'message' => '#^Parameter \\#2 \\$row \\(array\\|CodeIgniter\\\\Shield\\\\Entities\\\\User\\) of method CodeIgniter\\\\Shield\\\\Models\\\\UserModel\\:\\:update\\(\\) should be contravariant with parameter \\$row \\(array\\<int\\|string, float\\|int\\|object\\|string\\|null\\>\\|object\\|null\\) of method CodeIgniter\\\\Model\\:\\:update\\(\\)$#',
+	'message' => '#^Parameter \\#2 \\$row \\(array\\|CodeIgniter\\\\Shield\\\\Entities\\\\User\\) of method CodeIgniter\\\\Shield\\\\Models\\\\UserModel\\:\\:update\\(\\) should be contravariant with parameter \\$row \\(array\\<int\\|string, bool\\|float\\|int\\|object\\|string\\|null\\>\\|object\\|null\\) of method CodeIgniter\\\\Model\\:\\:update\\(\\)$#',
 	'count' => 1,
 	'path' => __DIR__ . '/src/Models/UserModel.php',
 ];
