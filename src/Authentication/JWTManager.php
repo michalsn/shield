@@ -31,7 +31,7 @@ class JWTManager
     public function __construct(
         ?Time $clock = null,
         ?JWSEncoder $jwsEncoder = null,
-        ?JWSDecoder $jwsDecoder = null
+        ?JWSDecoder $jwsDecoder = null,
     ) {
         $this->clock      = $clock ?? new Time();
         $this->jwsEncoder = $jwsEncoder ?? new JWSEncoder(null, $this->clock);
@@ -52,7 +52,7 @@ class JWTManager
         array $claims = [],
         ?int $ttl = null,
         $keyset = 'default',
-        ?array $headers = null
+        ?array $headers = null,
     ): string {
         $payload = array_merge(
             $claims,
@@ -77,7 +77,7 @@ class JWTManager
         array $claims,
         ?int $ttl = null,
         $keyset = 'default',
-        ?array $headers = null
+        ?array $headers = null,
     ): string {
         return $this->jwsEncoder->encode($claims, $ttl, $keyset, $headers);
     }

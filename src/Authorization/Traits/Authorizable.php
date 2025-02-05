@@ -255,10 +255,10 @@ trait Authorizable
 
         foreach ($permissions as $permission) {
             // Permission must contain a scope and action
-            if (strpos($permission, '.') === false) {
+            if (! str_contains($permission, '.')) {
                 throw new LogicException(
                     'A permission must be a string consisting of a scope and action, like `users.create`.'
-                    . ' Invalid permission: ' . $permission
+                    . ' Invalid permission: ' . $permission,
                 );
             }
 

@@ -100,14 +100,13 @@ abstract class AbstractTranslationTestCase extends TestCase
     /**
      * This tests that all language files configured in the main CI4 repository
      * have a corresponding language file in the current locale.
-     *
-     * @dataProvider localesProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('localesProvider')]
     final public function testAllConfiguredLanguageFilesAreTranslated(string $locale): void
     {
         $filesNotTranslated = array_diff(
             $this->expectedSets(),
-            $this->foundSets($locale)
+            $this->foundSets($locale),
         );
 
         sort($filesNotTranslated);
@@ -118,21 +117,20 @@ abstract class AbstractTranslationTestCase extends TestCase
             $count > 1 ? 'files' : 'file',
             implode('", "', $filesNotTranslated),
             $count > 1 ? 'are' : 'is',
-            $locale
+            $locale,
         ));
     }
 
     /**
      * This tests that all translated language files in the current locale have a
      * corresponding language file in the main CI4 repository.
-     *
-     * @dataProvider localesProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('localesProvider')]
     final public function testAllTranslatedLanguageFilesAreConfigured(string $locale): void
     {
         $filesNotConfigured = array_diff(
             $this->foundSets($locale),
-            $this->expectedSets()
+            $this->expectedSets(),
         );
 
         sort($filesNotConfigured);
@@ -143,16 +141,15 @@ abstract class AbstractTranslationTestCase extends TestCase
             $count > 1 ? 'files' : 'file',
             implode('", "', $filesNotConfigured),
             $locale,
-            $count > 1 ? 'are' : 'is'
+            $count > 1 ? 'are' : 'is',
         ));
     }
 
     /**
      * This tests that all language keys defined by a language file in the main CI4
      * repository have corresponding keys in the current locale.
-     *
-     * @dataProvider localesProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('localesProvider')]
     final public function testAllConfiguredLanguageKeysAreIncluded(string $locale): void
     {
         $keysNotIncluded = [];
@@ -160,7 +157,7 @@ abstract class AbstractTranslationTestCase extends TestCase
         foreach ($this->foundSets($locale) as $file) {
             $missing = array_diff_key(
                 $this->loadFile($file),
-                $this->loadFile($file, $locale)
+                $this->loadFile($file, $locale),
             );
 
             foreach (array_keys($missing) as $key) {
@@ -176,16 +173,15 @@ abstract class AbstractTranslationTestCase extends TestCase
             $count > 1 ? 'keys' : 'key',
             implode('", "', $keysNotIncluded),
             $count > 1 ? 'are' : 'is',
-            $locale
+            $locale,
         ));
     }
 
     /**
      * This tests that all included language keys in a language file for the current
      * locale have corresponding keys in the main CI4 repository.
-     *
-     * @dataProvider localesProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('localesProvider')]
     final public function testAllIncludedLanguageKeysAreConfigured(string $locale): void
     {
         $keysNotConfigured = [];
@@ -193,7 +189,7 @@ abstract class AbstractTranslationTestCase extends TestCase
         foreach ($this->foundSets($locale) as $file) {
             $extra = array_diff_key(
                 $this->loadFile($file, $locale),
-                $this->loadFile($file)
+                $this->loadFile($file),
             );
 
             foreach (array_keys($extra) as $key) {
@@ -209,7 +205,7 @@ abstract class AbstractTranslationTestCase extends TestCase
             $count > 1 ? 'keys' : 'key',
             implode('", "', $keysNotConfigured),
             $locale,
-            $count > 1 ? 'are' : 'is'
+            $count > 1 ? 'are' : 'is',
         ));
     }
 
@@ -217,9 +213,8 @@ abstract class AbstractTranslationTestCase extends TestCase
      * This tests that all included language keys in a language file for the current
      * locale that have corresponding keys in the main CI4 repository are really translated
      * and do not only copy the main repository's value.
-     *
-     * @dataProvider localesProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('localesProvider')]
     final public function testAllIncludedLanguageKeysAreTranslated(string $locale): void
     {
         // These keys are usually not translated because they contain either
@@ -256,16 +251,15 @@ abstract class AbstractTranslationTestCase extends TestCase
             $count > 1 ? 'keys' : 'key',
             implode('", "', $keysNotTranslated),
             $locale,
-            $count > 1 ? 'differ' : 'differs'
+            $count > 1 ? 'differ' : 'differs',
         ));
     }
 
     /**
      * This tests that the order of all language keys defined by a translation language file
      * resembles the order in the main CI4 repository.
-     *
-     * @dataProvider localesProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('localesProvider')]
     final public function testAllConfiguredLanguageKeysAreInOrder(string $locale): void
     {
         $diffs = [];
@@ -287,7 +281,7 @@ abstract class AbstractTranslationTestCase extends TestCase
                             "\n%s:\n%s\n%s",
                             $file,
                             CLI::color("-'{$expectedKey}' => '{$original[$expectedKey]}';", 'red'),
-                            CLI::color("+'{$actualKey}' => '{$translated[$actualKey]}';", 'green')
+                            CLI::color("+'{$actualKey}' => '{$translated[$actualKey]}';", 'green'),
                         );
                         break;
                     }
@@ -299,15 +293,14 @@ abstract class AbstractTranslationTestCase extends TestCase
             "Failed asserting that the translated language keys in \"%s\" locale are ordered correctly.\n%s\n%s",
             $locale,
             CLI::color('--- Original', 'red') . "\n" . CLI::color('+++ Translated', 'green'),
-            implode("\n", $diffs)
+            implode("\n", $diffs),
         ));
     }
 
     /**
      * @see https://codeigniter4.github.io/CodeIgniter4/outgoing/localization.html#replacing-parameters
-     *
-     * @dataProvider localesProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('localesProvider')]
     final public function testAllLocalizationParametersAreNotTranslated(string $locale): void
     {
         $diffs = [];
@@ -332,7 +325,7 @@ abstract class AbstractTranslationTestCase extends TestCase
 
                 foreach ($matches as $match) {
                     foreach ($match as $parameter) {
-                        if (strpos($translated[$key], $parameter) === false) {
+                        if (! str_contains($translated[$key], $parameter)) {
                             $id = sprintf('%s.%s', substr($file, 0, -4), $key);
 
                             $diffs[$id] ??= [];
@@ -353,8 +346,8 @@ abstract class AbstractTranslationTestCase extends TestCase
             implode("\n", array_map(
                 static fn (string $key, array $values): string => sprintf('  * %s => %s', $key, implode(', ', $values)),
                 array_keys($diffs),
-                array_values($diffs)
-            ))
+                array_values($diffs),
+            )),
         ));
     }
 
@@ -372,16 +365,14 @@ abstract class AbstractTranslationTestCase extends TestCase
         return [$locale => [$locale]];
     }
 
-    /**
-     * @dataProvider localesProvider
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('localesProvider')]
     final public function testLocaleHasCorrespondingTestCaseFile(string $locale): void
     {
         $class = array_flip(self::$locales)[$locale];
 
         $this->assertTrue(class_exists($class, false), sprintf(
             'Failed asserting that test class "%s" is existing.',
-            $class
+            $class,
         ));
     }
 

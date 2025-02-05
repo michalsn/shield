@@ -26,9 +26,7 @@ use Tests\Support\TestCase;
  */
 final class FilterInCliTest extends TestCase
 {
-    /**
-     * @dataProvider provideWhenInCliDoNothing
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideWhenInCliDoNothing')]
     public function testWhenInCliDoNothing(FilterInterface $filter): void
     {
         $clirequest = $this->createMock(CLIRequest::class);

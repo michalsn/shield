@@ -55,9 +55,7 @@ final class PasswordsTest extends CIUnitTestCase
         return $hashedPassword;
     }
 
-    /**
-     * @depends testHash
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testHash')]
     public function testNeedsRehashTakesCareOptions(string $hashedPassword): void
     {
         $config           = new AuthConfig();

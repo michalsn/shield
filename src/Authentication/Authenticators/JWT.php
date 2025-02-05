@@ -90,7 +90,7 @@ class JWT implements AuthenticatorInterface
                     $credentials['token'] ?? '',
                     false,
                     $ipAddress,
-                    $userAgent
+                    $userAgent,
                 );
             }
 
@@ -108,7 +108,7 @@ class JWT implements AuthenticatorInterface
                     false,
                     $ipAddress,
                     $userAgent,
-                    $user->id
+                    $user->id,
                 );
             }
 
@@ -130,7 +130,7 @@ class JWT implements AuthenticatorInterface
                 true,
                 $ipAddress,
                 $userAgent,
-                $this->user->id
+                $this->user->id,
             );
         }
 
@@ -153,7 +153,7 @@ class JWT implements AuthenticatorInterface
                 'success' => false,
                 'reason'  => lang(
                     'Auth.noToken',
-                    [config('AuthJWT')->authenticatorHeader]
+                    [config('AuthJWT')->authenticatorHeader],
                 ),
             ]);
         }
@@ -225,10 +225,10 @@ class JWT implements AuthenticatorInterface
         $config = config('AuthJWT');
 
         $tokenHeader = $request->getHeaderLine(
-            $config->authenticatorHeader ?? 'Authorization'
+            $config->authenticatorHeader ?? 'Authorization',
         );
 
-        if (strpos($tokenHeader, 'Bearer') === 0) {
+        if (str_starts_with($tokenHeader, 'Bearer')) {
             return trim(substr($tokenHeader, 6));
         }
 
@@ -284,7 +284,7 @@ class JWT implements AuthenticatorInterface
     {
         if (! $this->user instanceof User) {
             throw new InvalidArgumentException(
-                __METHOD__ . '() requires logged in user before calling.'
+                __METHOD__ . '() requires logged in user before calling.',
             );
         }
 

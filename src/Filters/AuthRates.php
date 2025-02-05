@@ -50,7 +50,7 @@ class AuthRates implements FilterInterface
         if ($throttler->check(md5($request->getIPAddress()), 10, MINUTE, 1) === false) {
             return service('response')->setStatusCode(
                 429,
-                lang('Auth.throttled', [$throttler->getTokenTime()]) // message
+                lang('Auth.throttled', [$throttler->getTokenTime()]), // message
             );
         }
     }

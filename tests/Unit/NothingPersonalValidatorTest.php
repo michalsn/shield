@@ -167,10 +167,9 @@ final class NothingPersonalValidatorTest extends CIUnitTestCase
      *
      *  $config->maxSimilarity = 50; is the highest setting where all tests pass.
      *
-     * @dataProvider provideIsNotPersonalFalsePositivesCaughtByIsNotSimilar
-     *
      * @param mixed $password
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideIsNotPersonalFalsePositivesCaughtByIsNotSimilar')]
     public function testIsNotPersonalFalsePositivesCaughtByIsNotSimilar($password): void
     {
         new User([
@@ -204,12 +203,11 @@ final class NothingPersonalValidatorTest extends CIUnitTestCase
     }
 
     /**
-     * @dataProvider provideConfigPersonalFieldsValues
-     *
      * @param mixed $firstName
      * @param mixed $lastName
      * @param mixed $expected
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideConfigPersonalFieldsValues')]
     public function testConfigPersonalFieldsValues($firstName, $lastName, $expected): void
     {
         $config                 = new Auth();
@@ -256,16 +254,10 @@ final class NothingPersonalValidatorTest extends CIUnitTestCase
     }
 
     /**
-     * @dataProvider provideMaxSimilarityZeroTurnsOffSimilarityCalculation
-     *
-     * The calculated similarity of 'captnjoe' and 'CaptainJoe' is 88.89.
-     * With $config->maxSimilarity = 66; the password should be rejected,
-     * but using $config->maxSimilarity = 0; will turn off the calculation
-     * and accept the password.
-     *
      * @param mixed $maxSimilarity
      * @param mixed $expected
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideMaxSimilarityZeroTurnsOffSimilarityCalculation')]
     public function testMaxSimilarityZeroTurnsOffSimilarityCalculation($maxSimilarity, $expected): void
     {
         $config                = new Auth();
@@ -298,9 +290,7 @@ final class NothingPersonalValidatorTest extends CIUnitTestCase
         ];
     }
 
-    /**
-     * @dataProvider provideCheckPasswordWithBadEmail
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideCheckPasswordWithBadEmail')]
     public function testCheckPasswordWithBadEmail(string $email, bool $expected): void
     {
         $config          = new Auth();

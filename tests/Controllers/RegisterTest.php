@@ -113,7 +113,7 @@ final class RegisterTest extends DatabaseTestCase
         $result->assertSessionMissing('error');
         $result->assertSessionHas(
             'errors',
-            ['password' => 'Password cannot exceed 72 bytes in length.']
+            ['password' => 'Password cannot exceed 72 bytes in length.'],
         );
     }
 
@@ -135,7 +135,7 @@ final class RegisterTest extends DatabaseTestCase
         $result->assertSessionMissing('error');
         $result->assertSessionHas(
             'errors',
-            ['password' => 'The Password field cannot exceed 255 characters in length.']
+            ['password' => 'The Password field cannot exceed 255 characters in length.'],
         );
     }
 
@@ -325,7 +325,7 @@ final class RegisterTest extends DatabaseTestCase
         $result->assertSessionMissing('error');
         $result->assertSessionHas(
             'errors',
-            ['email' => 'The Email Address field must contain a valid email address.']
+            ['email' => 'The Email Address field must contain a valid email address.'],
         );
     }
 

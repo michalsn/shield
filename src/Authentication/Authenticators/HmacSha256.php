@@ -71,7 +71,7 @@ class HmacSha256 implements AuthenticatorInterface
                     $credentials['token'] ?? '',
                     false,
                     $ipAddress,
-                    $userAgent
+                    $userAgent,
                 );
             }
 
@@ -90,7 +90,7 @@ class HmacSha256 implements AuthenticatorInterface
                     false,
                     $ipAddress,
                     $userAgent,
-                    $user->id
+                    $user->id,
                 );
             }
 
@@ -114,7 +114,7 @@ class HmacSha256 implements AuthenticatorInterface
                 true,
                 $ipAddress,
                 $userAgent,
-                $this->user->id
+                $this->user->id,
             );
         }
 
@@ -135,12 +135,12 @@ class HmacSha256 implements AuthenticatorInterface
                 'success' => false,
                 'reason'  => lang(
                     'Auth.noToken',
-                    [config('AuthToken')->authenticatorHeader['hmac']]
+                    [config('AuthToken')->authenticatorHeader['hmac']],
                 ),
             ]);
         }
 
-        if (strpos($credentials['token'], 'HMAC-SHA256') === 0) {
+        if (str_starts_with($credentials['token'], 'HMAC-SHA256')) {
             $credentials['token'] = trim(substr($credentials['token'], 11)); // HMAC-SHA256
         }
 
@@ -177,7 +177,7 @@ class HmacSha256 implements AuthenticatorInterface
         if (
             isset($token->last_used_at)
             && $token->last_used_at->isBefore(
-                Time::now()->subSeconds(config('AuthToken')->unusedTokenLifetime)
+                Time::now()->subSeconds(config('AuthToken')->unusedTokenLifetime),
             )
         ) {
             return new Result([
@@ -218,7 +218,7 @@ class HmacSha256 implements AuthenticatorInterface
 
         return $this->attempt([
             'token' => $request->getHeaderLine(
-                config('AuthToken')->authenticatorHeader['hmac']
+                config('AuthToken')->authenticatorHeader['hmac'],
             ),
         ])->isOK();
     }
@@ -247,7 +247,7 @@ class HmacSha256 implements AuthenticatorInterface
         }
 
         $user->setHmacToken(
-            $user->getHmacToken($this->getHmacKeyFromToken())
+            $user->getHmacToken($this->getHmacKeyFromToken()),
         );
 
         $this->login($user);
@@ -339,7 +339,7 @@ class HmacSha256 implements AuthenticatorInterface
     {
         if (! $this->user instanceof User) {
             throw new InvalidArgumentException(
-                __METHOD__ . '() requires logged in user before calling.'
+                __METHOD__ . '() requires logged in user before calling.',
             );
         }
 

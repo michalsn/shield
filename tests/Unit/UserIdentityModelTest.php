@@ -79,7 +79,7 @@ final class UserIdentityModelTest extends TestCase
                 'name'  => 'register',
                 'extra' => lang('Auth.needVerification'),
             ],
-            $generator
+            $generator,
         );
     }
 

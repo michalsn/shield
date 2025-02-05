@@ -93,11 +93,11 @@ final class SetupTest extends TestCase
   Updated: vfs://root/Config/Routes.php
   Updated: We have updated file \'vfs://root/Config/Security.php\' for security reasons.
   Updated: vfs://root/Config/Email.php',
-            $result
+            $result,
         );
         $this->assertStringContainsString(
             'Running all new migrations...',
-            $result
+            $result,
         );
     }
 
@@ -127,7 +127,7 @@ final class SetupTest extends TestCase
   Updated: vfs://root/Config/Autoload.php
   Updated: vfs://root/Config/Routes.php
   Updated: We have updated file \'vfs://root/Config/Security.php\' for security reasons.',
-            $result
+            $result,
         );
     }
 
@@ -162,7 +162,7 @@ final class SetupTest extends TestCase
 
         $this->assertStringContainsString(
             "public \$helpers = ['text', 'form', 'auth', 'setting'];",
-            $output
+            $output,
         );
     }
 
@@ -174,7 +174,7 @@ final class SetupTest extends TestCase
         $root = vfsStream::setup('root');
         vfsStream::copyFromFileSystem(
             APPPATH,
-            $root
+            $root,
         );
 
         return $root->url() . '/';

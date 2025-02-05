@@ -49,7 +49,7 @@ final class PwnedValidatorTest extends CIUnitTestCase
                 '538F23AA21F516E4767380DE4AB7D30AF9B:2',
                 '5421C6ECD4AF2B65598980DDC3BC164ED4B:9',
                 '54355ADA7D7B306C68DAC1548E84B53A10F:1',
-            ]
+            ],
         );
 
         $response = new Response(new App());
@@ -103,7 +103,7 @@ final class PwnedValidatorTest extends CIUnitTestCase
                 '0385DB23CA0658858A494B66A7933955551:1',
                 '03B14A9EA4D383220176FDC3B3BC771A415:1',
                 '03BE55564E0C24C43E416F595B743588A27:1',
-            ]
+            ],
         );
 
         $response = new Response(new App());
@@ -133,7 +133,7 @@ final class PwnedValidatorTest extends CIUnitTestCase
         $curlrequest->method('get')
             ->willThrowException(HTTPException::forCurlError(
                 '7',
-                'Failed to connect'
+                'Failed to connect',
             ));
         Services::injectMock('curlrequest', $curlrequest);
 

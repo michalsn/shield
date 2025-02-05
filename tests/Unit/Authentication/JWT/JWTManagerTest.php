@@ -54,9 +54,7 @@ final class JWTManagerTest extends TestCase
         return [$token, $currentTime];
     }
 
-    /**
-     * @depends testGenerateToken
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testGenerateToken')]
     public function testGenerateTokenPayload(array $data): void
     {
         [$token, $currentTime] = $data;
@@ -121,9 +119,7 @@ final class JWTManagerTest extends TestCase
         return [$token, $currentTime];
     }
 
-    /**
-     * @depends testIssue
-     */
+    #[\PHPUnit\Framework\Attributes\Depends('testIssue')]
     public function testIssuePayload(array $data): void
     {
         [$token, $currentTime] = $data;
@@ -259,12 +255,12 @@ final class JWTManagerTest extends TestCase
                     str_replace(
                         '-',
                         '+',
-                        explode('.', $token)[$index]
-                    )
+                        explode('.', $token)[$index],
+                    ),
                 ),
-                true
+                true,
             ),
-            true
+            true,
         );
     }
 

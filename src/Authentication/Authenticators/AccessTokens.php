@@ -70,7 +70,7 @@ class AccessTokens implements AuthenticatorInterface
                     $credentials['token'] ?? '',
                     false,
                     $ipAddress,
-                    $userAgent
+                    $userAgent,
                 );
             }
 
@@ -89,7 +89,7 @@ class AccessTokens implements AuthenticatorInterface
                     false,
                     $ipAddress,
                     $userAgent,
-                    $user->id
+                    $user->id,
                 );
             }
 
@@ -113,7 +113,7 @@ class AccessTokens implements AuthenticatorInterface
                 true,
                 $ipAddress,
                 $userAgent,
-                $this->user->id
+                $this->user->id,
             );
         }
 
@@ -134,12 +134,12 @@ class AccessTokens implements AuthenticatorInterface
                 'success' => false,
                 'reason'  => lang(
                     'Auth.noToken',
-                    [config('AuthToken')->authenticatorHeader['tokens']]
+                    [config('AuthToken')->authenticatorHeader['tokens']],
                 ),
             ]);
         }
 
-        if (strpos($credentials['token'], 'Bearer') === 0) {
+        if (str_starts_with($credentials['token'], 'Bearer')) {
             $credentials['token'] = trim(substr($credentials['token'], 6));
         }
 
@@ -161,7 +161,7 @@ class AccessTokens implements AuthenticatorInterface
         if (
             $token->last_used_at
             && $token->last_used_at->isBefore(
-                Time::now()->subSeconds(config('AuthToken')->unusedTokenLifetime)
+                Time::now()->subSeconds(config('AuthToken')->unusedTokenLifetime),
             )
         ) {
             return new Result([
@@ -202,7 +202,7 @@ class AccessTokens implements AuthenticatorInterface
 
         return $this->attempt([
             'token' => $request->getHeaderLine(
-                config('AuthToken')->authenticatorHeader['tokens']
+                config('AuthToken')->authenticatorHeader['tokens'],
             ),
         ])->isOK();
     }
@@ -231,7 +231,7 @@ class AccessTokens implements AuthenticatorInterface
         }
 
         $user->setAccessToken(
-            $user->getAccessToken($this->getBearerToken())
+            $user->getAccessToken($this->getBearerToken()),
         );
 
         $this->login($user);
@@ -277,7 +277,7 @@ class AccessTokens implements AuthenticatorInterface
     {
         if (! $this->user instanceof User) {
             throw new InvalidArgumentException(
-                __METHOD__ . '() requires logged in user before calling.'
+                __METHOD__ . '() requires logged in user before calling.',
             );
         }
 

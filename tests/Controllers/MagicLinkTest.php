@@ -119,7 +119,7 @@ final class MagicLinkTest extends TestCase
                 'id'                  => $user->id,
                 'auth_action'         => 'CodeIgniter\Shield\Authentication\Actions\EmailActivator',
                 'auth_action_message' => lang('Auth.needVerification'),
-            ]
+            ],
         );
         $this->assertFalse(auth()->loggedIn());
     }

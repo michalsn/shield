@@ -142,7 +142,7 @@ final class HmacAuthenticatorTest extends DatabaseTestCase
         $this->assertFalse($result->isOK());
         $this->assertSame(
             lang('Auth.noToken', [config('AuthToken')->authenticatorHeader['hmac']]),
-            $result->reason()
+            $result->reason(),
         );
     }
 
