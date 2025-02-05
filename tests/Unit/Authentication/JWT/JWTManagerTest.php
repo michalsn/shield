@@ -18,6 +18,7 @@ use CodeIgniter\Shield\Authentication\JWTManager;
 use CodeIgniter\Shield\Config\AuthJWT;
 use CodeIgniter\Shield\Entities\User;
 use CodeIgniter\Shield\Models\UserModel;
+use PHPUnit\Framework\Attributes\Depends;
 use Tests\Support\TestCase;
 
 /**
@@ -54,7 +55,7 @@ final class JWTManagerTest extends TestCase
         return [$token, $currentTime];
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testGenerateToken')]
+    #[Depends('testGenerateToken')]
     public function testGenerateTokenPayload(array $data): void
     {
         [$token, $currentTime] = $data;
@@ -119,7 +120,7 @@ final class JWTManagerTest extends TestCase
         return [$token, $currentTime];
     }
 
-    #[\PHPUnit\Framework\Attributes\Depends('testIssue')]
+    #[Depends('testIssue')]
     public function testIssuePayload(array $data): void
     {
         [$token, $currentTime] = $data;

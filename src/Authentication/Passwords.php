@@ -26,11 +26,8 @@ use CodeIgniter\Shield\Result;
  */
 class Passwords
 {
-    protected Auth $config;
-
-    public function __construct(Auth $config)
+    public function __construct(protected Auth $config)
     {
-        $this->config = $config;
     }
 
     /**

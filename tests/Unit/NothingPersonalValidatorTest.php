@@ -17,6 +17,7 @@ use CodeIgniter\Shield\Authentication\Passwords\NothingPersonalValidator;
 use CodeIgniter\Shield\Config\Auth;
 use CodeIgniter\Shield\Entities\User;
 use CodeIgniter\Test\CIUnitTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @internal
@@ -166,11 +167,9 @@ final class NothingPersonalValidatorTest extends CIUnitTestCase
      * rejected by isNotSimilar().
      *
      *  $config->maxSimilarity = 50; is the highest setting where all tests pass.
-     *
-     * @param mixed $password
      */
-    #[\PHPUnit\Framework\Attributes\DataProvider('provideIsNotPersonalFalsePositivesCaughtByIsNotSimilar')]
-    public function testIsNotPersonalFalsePositivesCaughtByIsNotSimilar($password): void
+    #[DataProvider('provideIsNotPersonalFalsePositivesCaughtByIsNotSimilar')]
+    public function testIsNotPersonalFalsePositivesCaughtByIsNotSimilar(mixed $password): void
     {
         new User([
             'username' => 'CaptainJoe',
@@ -202,13 +201,8 @@ final class NothingPersonalValidatorTest extends CIUnitTestCase
         ];
     }
 
-    /**
-     * @param mixed $firstName
-     * @param mixed $lastName
-     * @param mixed $expected
-     */
-    #[\PHPUnit\Framework\Attributes\DataProvider('provideConfigPersonalFieldsValues')]
-    public function testConfigPersonalFieldsValues($firstName, $lastName, $expected): void
+    #[DataProvider('provideConfigPersonalFieldsValues')]
+    public function testConfigPersonalFieldsValues(mixed $firstName, mixed $lastName, mixed $expected): void
     {
         $config                 = new Auth();
         $config->maxSimilarity  = 66;
@@ -253,12 +247,8 @@ final class NothingPersonalValidatorTest extends CIUnitTestCase
         ];
     }
 
-    /**
-     * @param mixed $maxSimilarity
-     * @param mixed $expected
-     */
-    #[\PHPUnit\Framework\Attributes\DataProvider('provideMaxSimilarityZeroTurnsOffSimilarityCalculation')]
-    public function testMaxSimilarityZeroTurnsOffSimilarityCalculation($maxSimilarity, $expected): void
+    #[DataProvider('provideMaxSimilarityZeroTurnsOffSimilarityCalculation')]
+    public function testMaxSimilarityZeroTurnsOffSimilarityCalculation(mixed $maxSimilarity, mixed $expected): void
     {
         $config                = new Auth();
         $config->maxSimilarity = $maxSimilarity;
@@ -290,7 +280,7 @@ final class NothingPersonalValidatorTest extends CIUnitTestCase
         ];
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('provideCheckPasswordWithBadEmail')]
+    #[DataProvider('provideCheckPasswordWithBadEmail')]
     public function testCheckPasswordWithBadEmail(string $email, bool $expected): void
     {
         $config          = new Auth();

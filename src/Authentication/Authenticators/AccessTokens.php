@@ -29,18 +29,15 @@ class AccessTokens implements AuthenticatorInterface
 {
     public const ID_TYPE_ACCESS_TOKEN = 'access_token';
 
-    /**
-     * The persistence engine
-     */
-    protected UserModel $provider;
-
     protected ?User $user = null;
     protected TokenLoginModel $loginModel;
 
-    public function __construct(UserModel $provider)
-    {
-        $this->provider = $provider;
-
+    /**
+     * @param UserModel $provider The persistence engine
+     */
+    public function __construct(
+        protected UserModel $provider,
+    ) {
         $this->loginModel = model(TokenLoginModel::class);
     }
 
@@ -139,8 +136,8 @@ class AccessTokens implements AuthenticatorInterface
             ]);
         }
 
-        if (str_starts_with($credentials['token'], 'Bearer')) {
-            $credentials['token'] = trim(substr($credentials['token'], 6));
+        if (str_starts_with((string) $credentials['token'], 'Bearer')) {
+            $credentials['token'] = trim(substr((string) $credentials['token'], 6));
         }
 
         /** @var UserIdentityModel $identityModel */

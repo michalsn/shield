@@ -57,11 +57,6 @@ class Session implements AuthenticatorInterface
     private const STATE_LOGGED_IN = 3;
 
     /**
-     * The persistence engine
-     */
-    protected UserModel $provider;
-
-    /**
      * Authenticated or authenticating (pending login) User
      */
     protected ?User $user = null;
@@ -80,10 +75,12 @@ class Session implements AuthenticatorInterface
     protected RememberModel $rememberModel;
     protected UserIdentityModel $userIdentityModel;
 
-    public function __construct(UserModel $provider)
-    {
-        $this->provider = $provider;
-
+    /**
+     * @param UserModel $provider The persistence engine
+     */
+    public function __construct(
+        protected UserModel $provider,
+    ) {
         $this->loginModel        = model(LoginModel::class);
         $this->rememberModel     = model(RememberModel::class);
         $this->userIdentityModel = model(UserIdentityModel::class);

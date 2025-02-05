@@ -17,13 +17,11 @@ use CodeIgniter\Shield\Config\Auth as AuthConfig;
 
 class BaseValidator
 {
-    protected AuthConfig $config;
     protected ?string $error      = null;
     protected ?string $suggestion = null;
 
-    public function __construct(AuthConfig $config)
+    public function __construct(protected AuthConfig $config)
     {
-        $this->config = $config;
     }
 
     /**

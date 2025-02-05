@@ -24,7 +24,7 @@ class CreateAuthTables extends Migration
      */
     private array $tables;
 
-    private array $attributes;
+    private readonly array $attributes;
 
     public function __construct(?Forge $forge = null)
     {

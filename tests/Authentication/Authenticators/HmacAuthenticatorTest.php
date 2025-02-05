@@ -95,7 +95,7 @@ final class HmacAuthenticatorTest extends DatabaseTestCase
 
         try {
             $this->auth->loginById(0);
-        } catch (AuthenticationException $e) {
+        } catch (AuthenticationException) {
             // Failed login
         }
 

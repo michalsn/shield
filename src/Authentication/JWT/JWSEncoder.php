@@ -19,10 +19,7 @@ use CodeIgniter\Shield\Config\AuthJWT;
 
 class JWSEncoder
 {
-    protected Time $clock;
-    protected JWSAdapterInterface $jwsAdapter;
-
-    public function __construct(?JWSAdapterInterface $jwsAdapter = null, ?Time $clock = null)
+    public function __construct(protected ?JWSAdapterInterface $jwsAdapter = null, protected ?Time $clock = null)
     {
         $this->jwsAdapter = $jwsAdapter ?? new FirebaseAdapter();
         $this->clock      = $clock ?? new Time();

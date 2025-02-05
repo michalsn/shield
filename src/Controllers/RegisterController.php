@@ -113,7 +113,7 @@ class RegisterController extends BaseController
 
         try {
             $users->save($user);
-        } catch (ValidationException $e) {
+        } catch (ValidationException) {
             return redirect()->back()->withInput()->with('errors', $users->errors());
         }
 

@@ -30,11 +30,9 @@ class Authentication
     protected array $instances = [];
 
     protected ?UserModel $userProvider = null;
-    protected AuthConfig $config;
 
-    public function __construct(AuthConfig $config)
+    public function __construct(protected AuthConfig $config)
     {
-        $this->config = $config;
     }
 
     /**

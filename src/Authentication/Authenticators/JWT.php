@@ -40,11 +40,6 @@ class JWT implements AuthenticatorInterface
      */
     public const ID_TYPE_JWT = 'jwt';
 
-    /**
-     * The persistence engine
-     */
-    protected UserModel $provider;
-
     protected ?User $user = null;
     protected JWTManager $jwtManager;
     protected TokenLoginModel $tokenLoginModel;
@@ -55,10 +50,12 @@ class JWT implements AuthenticatorInterface
      */
     protected $keyset = 'default';
 
-    public function __construct(UserModel $provider)
-    {
-        $this->provider = $provider;
-
+    /**
+     * @param UserModel $provider The persistence engine
+     */
+    public function __construct(
+        protected UserModel $provider,
+    ) {
         $this->jwtManager      = service('jwtmanager');
         $this->tokenLoginModel = model(TokenLoginModel::class);
     }

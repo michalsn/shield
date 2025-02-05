@@ -30,18 +30,15 @@ class HmacSha256 implements AuthenticatorInterface
 {
     public const ID_TYPE_HMAC_TOKEN = 'hmac_sha256';
 
-    /**
-     * The persistence engine
-     */
-    protected UserModel $provider;
-
     protected ?User $user = null;
     protected TokenLoginModel $loginModel;
 
-    public function __construct(UserModel $provider)
-    {
-        $this->provider = $provider;
-
+    /**
+     * @param UserModel $provider The persistence engine
+     */
+    public function __construct(
+        protected UserModel $provider,
+    ) {
         $this->loginModel = model(TokenLoginModel::class);
     }
 
@@ -140,8 +137,8 @@ class HmacSha256 implements AuthenticatorInterface
             ]);
         }
 
-        if (str_starts_with($credentials['token'], 'HMAC-SHA256')) {
-            $credentials['token'] = trim(substr($credentials['token'], 11)); // HMAC-SHA256
+        if (str_starts_with((string) $credentials['token'], 'HMAC-SHA256')) {
+            $credentials['token'] = trim(substr((string) $credentials['token'], 11)); // HMAC-SHA256
         }
 
         // Extract UserToken and HMACSHA256 Signature from Authorization token
@@ -163,7 +160,7 @@ class HmacSha256 implements AuthenticatorInterface
         $secretKey = $encrypter->decrypt($token->secret2);
 
         // Check signature...
-        $hash = hash_hmac('sha256', $credentials['body'], $secretKey);
+        $hash = hash_hmac('sha256', (string) $credentials['body'], $secretKey);
         if ($hash !== $signature) {
             return new Result([
                 'success' => false,

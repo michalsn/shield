@@ -16,7 +16,6 @@ namespace CodeIgniter\Shield\Authentication\Actions;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RedirectResponse;
-use CodeIgniter\HTTP\Response;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Shield\Authentication\Authenticators\Session;
 use CodeIgniter\Shield\Entities\User;
@@ -88,10 +87,8 @@ class EmailActivator implements ActionInterface
 
     /**
      * This method is unused.
-     *
-     * @return Response|string
      */
-    public function handle(IncomingRequest $request)
+    public function handle(IncomingRequest $request): never
     {
         throw new PageNotFoundException();
     }
