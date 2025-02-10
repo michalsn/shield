@@ -131,8 +131,8 @@ class NothingPersonalValidator extends BaseValidator implements ValidatorInterfa
                     }
 
                     // look both ways in case password is subset of needle
-                    if (strpos($haystack, $needle) !== false
-                        || strpos($needle, $haystack) !== false) {
+                    if (str_contains($haystack, $needle)
+                        || str_contains($needle, $haystack)) {
                         $valid = false;
                         break 2;
                     }
@@ -198,7 +198,7 @@ class NothingPersonalValidator extends BaseValidator implements ValidatorInterfa
     protected function strip_explode(string $str): array
     {
         $stripped = preg_replace('/[\W_]+/', ' ', $str);
-        $parts    = explode(' ', trim($stripped));
+        $parts    = explode(' ', trim((string) $stripped));
 
         // If it's not already there put the untouched input at the top of the array
         if (! in_array($str, $parts, true)) {

@@ -245,11 +245,11 @@ final class ActionsTest extends DatabaseTestCase
         // Should have sent an email with the link....
         $this->assertStringContainsString(
             'Please use the code below to activate your account and start using the site',
-            service('email')->archive['body']
+            service('email')->archive['body'],
         );
         $this->assertMatchesRegularExpression(
             '!<h1>[0-9]{6}</h1>!',
-            service('email')->archive['body']
+            service('email')->archive['body'],
         );
 
         // Should have included the username in the email

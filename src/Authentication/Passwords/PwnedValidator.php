@@ -54,7 +54,7 @@ class PwnedValidator extends BaseValidator implements ValidatorInterface
 
             $response = $client->get(
                 'range/' . $rangeHash,
-                ['headers' => ['Accept' => 'text/plain']]
+                ['headers' => ['Accept' => 'text/plain']],
             );
         } catch (HTTPException $e) {
             $exception = AuthenticationException::forHIBPCurlFail($e);
@@ -64,7 +64,7 @@ class PwnedValidator extends BaseValidator implements ValidatorInterface
         }
 
         $range    = $response->getBody();
-        $startPos = strpos($range, $searchHash);
+        $startPos = strpos((string) $range, $searchHash);
         if ($startPos === false) {
             return new Result([
                 'success' => true,
@@ -72,8 +72,8 @@ class PwnedValidator extends BaseValidator implements ValidatorInterface
         }
 
         $startPos += 36; // right after the delimiter (:)
-        $endPos = strpos($range, "\r\n", $startPos);
-        $hits   = $endPos !== false ? (int) substr($range, $startPos, $endPos - $startPos) : (int) substr($range, $startPos);
+        $endPos = strpos((string) $range, "\r\n", $startPos);
+        $hits   = $endPos !== false ? (int) substr((string) $range, $startPos, $endPos - $startPos) : (int) substr((string) $range, $startPos);
 
         $wording = $hits > 1 ? 'databases' : 'a database';
 

@@ -506,23 +506,10 @@ class Auth extends BaseConfig
      */
     protected function getUrl(string $url): string
     {
-        // To accommodate all url patterns
-        $final_url = '';
-
-        switch (true) {
-            case strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0: // URL begins with 'http' or 'https'. E.g. http://example.com
-                $final_url = $url;
-                break;
-
-            case route_to($url) !== false: // URL is a named-route
-                $final_url = rtrim(url_to($url), '/ ');
-                break;
-
-            default: // URL is a route (URI path)
-                $final_url = rtrim(site_url($url), '/ ');
-                break;
-        }
-
-        return $final_url;
+        return match (true) {
+            str_starts_with($url, 'http://') || str_starts_with($url, 'https://') => $url,
+            route_to($url) !== false                                              => rtrim(url_to($url), '/ '),
+            default                                                               => rtrim(site_url($url), '/ '),
+        };
     }
 }

@@ -62,9 +62,8 @@ class GroupModel extends BaseModel
 
     /**
      * @param int|string $userId
-     * @param mixed      $cache
      */
-    public function deleteNotIn($userId, $cache): void
+    public function deleteNotIn($userId, mixed $cache): void
     {
         $return = $this->builder()
             ->where('user_id', $userId)

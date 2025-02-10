@@ -26,11 +26,8 @@ use CodeIgniter\Shield\Result;
  */
 class Passwords
 {
-    protected Auth $config;
-
-    public function __construct(Auth $config)
+    public function __construct(protected Auth $config)
     {
-        $this->config = $config;
     }
 
     /**
@@ -72,10 +69,10 @@ class Passwords
     {
         return password_hash(
             base64_encode(
-                hash('sha384', $password, true)
+                hash('sha384', $password, true),
             ),
             $this->config->hashAlgorithm,
-            $this->getHashOptions()
+            $this->getHashOptions(),
         );
     }
 

@@ -115,7 +115,7 @@ final class JWTAuthenticatorTest extends DatabaseTestCase
         $this->assertFalse($result->isOK());
         $this->assertSame(
             \lang('Auth.noToken', [config('AuthJWT')->authenticatorHeader]),
-            $result->reason()
+            $result->reason(),
         );
     }
 
@@ -265,7 +265,7 @@ final class JWTAuthenticatorTest extends DatabaseTestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'Authentication\Authenticators\JWT::recordActiveDate() requires logged in user before calling.'
+            'Authentication\Authenticators\JWT::recordActiveDate() requires logged in user before calling.',
         );
 
         $this->auth->recordActiveDate();

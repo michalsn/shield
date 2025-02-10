@@ -16,7 +16,6 @@ namespace CodeIgniter\Shield\Authentication\Actions;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RedirectResponse;
-use CodeIgniter\HTTP\Response;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Shield\Authentication\Authenticators\Session;
 use CodeIgniter\Shield\Entities\User;
@@ -50,7 +49,7 @@ class EmailActivator implements ActionInterface
         $userEmail = $user->email;
         if ($userEmail === null) {
             throw new LogicException(
-                'Email Activation needs user email address. user_id: ' . $user->id
+                'Email Activation needs user email address. user_id: ' . $user->id,
             );
         }
 
@@ -72,7 +71,7 @@ class EmailActivator implements ActionInterface
         $email->setMessage($this->view(
             setting('Auth.views')['action_email_activate_email'],
             ['code'  => $code, 'user' => $user, 'ipAddress' => $ipAddress, 'userAgent' => $userAgent, 'date' => $date],
-            ['debug' => false]
+            ['debug' => false],
         ));
 
         if ($email->send(false) === false) {
@@ -88,10 +87,8 @@ class EmailActivator implements ActionInterface
 
     /**
      * This method is unused.
-     *
-     * @return Response|string
      */
-    public function handle(IncomingRequest $request)
+    public function handle(IncomingRequest $request): never
     {
         throw new PageNotFoundException();
     }
@@ -155,7 +152,7 @@ class EmailActivator implements ActionInterface
                 'name'  => 'register',
                 'extra' => lang('Auth.needVerification'),
             ],
-            $generator
+            $generator,
         );
     }
 
@@ -169,7 +166,7 @@ class EmailActivator implements ActionInterface
 
         return $identityModel->getIdentityByType(
             $user,
-            $this->type
+            $this->type,
         );
     }
 

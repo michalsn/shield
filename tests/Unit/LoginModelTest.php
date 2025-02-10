@@ -38,7 +38,7 @@ final class LoginModelTest extends TestCase
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage(
             'Validation error: [ip_address] The ip_address field is required.'
-            . ' [id_type] The id_type field is required.'
+            . ' [id_type] The id_type field is required.',
         );
 
         $model = $this->createLoginModel();
@@ -46,7 +46,7 @@ final class LoginModelTest extends TestCase
         $model->recordLoginAttempt(
             '',
             '',
-            true
+            true,
         );
     }
 }

@@ -56,7 +56,7 @@ final class CompositionValidatorTest extends TestCase
         $this->assertFalse($result->isOK());
         $this->assertSame(
             lang('Auth.errorPasswordLength', [$this->config->minimumPasswordLength]),
-            $result->reason()
+            $result->reason(),
         );
     }
 
@@ -69,7 +69,7 @@ final class CompositionValidatorTest extends TestCase
         $this->assertFalse($result->isOK());
         $this->assertSame(
             lang('Auth.errorPasswordLength', [$this->config->minimumPasswordLength]),
-            $result->reason()
+            $result->reason(),
         );
     }
 

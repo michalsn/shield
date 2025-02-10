@@ -364,7 +364,7 @@ final class SessionAuthenticatorTest extends DatabaseTestCase
 
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage(
-            'The user has User Info in Session, so already logged in or in pending login state.'
+            'The user has User Info in Session, so already logged in or in pending login state.',
         );
 
         $this->user->createEmailIdentity([

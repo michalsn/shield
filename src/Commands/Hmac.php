@@ -86,22 +86,12 @@ class Hmac extends BaseCommand
         $this->encrypter = new HmacEncrypter();
 
         try {
-            switch ($action) {
-                case 'encrypt':
-                    $this->encrypt();
-                    break;
-
-                case 'decrypt':
-                    $this->decrypt();
-                    break;
-
-                case 'reencrypt':
-                    $this->reEncrypt();
-                    break;
-
-                default:
-                    throw new BadInputException('Unrecognized Command');
-            }
+            match ($action) {
+                'encrypt'   => $this->encrypt(),
+                'decrypt'   => $this->decrypt(),
+                'reencrypt' => $this->reEncrypt(),
+                default     => throw new BadInputException('Unrecognized Command'),
+            };
         } catch (Exception $e) {
             $this->write($e->getMessage(), 'red');
 
@@ -141,7 +131,7 @@ class Hmac extends BaseCommand
                 } catch (RuntimeException $e) {
                     $that->error('id: ' . $identity->id . ', ' . $e->getMessage());
                 }
-            }
+            },
         );
     }
 
@@ -171,7 +161,7 @@ class Hmac extends BaseCommand
                 $uIdModelSub->save($identity);
 
                 $that->write('id: ' . $identity->id . ', decrypted.');
-            }
+            },
         );
     }
 
@@ -203,7 +193,7 @@ class Hmac extends BaseCommand
                 $uIdModelSub->save($identity);
 
                 $that->write('id: ' . $identity->id . ', Re-encrypted.');
-            }
+            },
         );
     }
 }

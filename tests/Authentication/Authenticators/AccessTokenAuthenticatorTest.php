@@ -121,7 +121,7 @@ final class AccessTokenAuthenticatorTest extends DatabaseTestCase
         $this->assertFalse($result->isOK());
         $this->assertSame(
             lang('Auth.noToken', [config('AuthToken')->authenticatorHeader['tokens']]),
-            $result->reason()
+            $result->reason(),
         );
     }
 

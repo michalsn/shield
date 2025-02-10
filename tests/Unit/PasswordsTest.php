@@ -17,6 +17,7 @@ use CodeIgniter\Shield\Authentication\Passwords;
 use CodeIgniter\Shield\Config\Auth as AuthConfig;
 use CodeIgniter\Shield\Entities\User;
 use CodeIgniter\Test\CIUnitTestCase;
+use PHPUnit\Framework\Attributes\Depends;
 
 /**
  * @internal
@@ -55,9 +56,7 @@ final class PasswordsTest extends CIUnitTestCase
         return $hashedPassword;
     }
 
-    /**
-     * @depends testHash
-     */
+    #[Depends('testHash')]
     public function testNeedsRehashTakesCareOptions(string $hashedPassword): void
     {
         $config           = new AuthConfig();

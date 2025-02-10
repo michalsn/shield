@@ -66,7 +66,7 @@ class LoginModel extends BaseModel
         bool $success,
         ?string $ipAddress = null,
         ?string $userAgent = null,
-        $userId = null
+        $userId = null,
     ): void {
         $this->disableDBDebug();
 

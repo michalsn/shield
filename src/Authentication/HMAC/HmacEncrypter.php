@@ -39,7 +39,7 @@ class HmacEncrypter
     /**
      * Auth Token config
      */
-    private AuthToken $authConfig;
+    private readonly AuthToken $authConfig;
 
     /**
      * Constructor

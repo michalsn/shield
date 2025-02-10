@@ -96,7 +96,7 @@ class UserIdentityModel extends BaseModel
     {
         if ($user->id === null) {
             throw new LogicException(
-                '"$user->id" is null. You should not use the incomplete User object.'
+                '"$user->id" is null. You should not use the incomplete User object.',
             );
         }
     }
@@ -112,7 +112,7 @@ class UserIdentityModel extends BaseModel
     public function createCodeIdentity(
         User $user,
         array $data,
-        callable $codeGenerator
+        callable $codeGenerator,
     ): string {
         $this->checkUserId($user);
 

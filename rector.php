@@ -44,6 +44,7 @@ use Rector\EarlyReturn\Rector\If_\RemoveAlwaysElseRector;
 use Rector\EarlyReturn\Rector\Return_\PreparedValueToEarlyReturnRector;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Php73\Rector\FuncCall\StringifyStrNeedlesRector;
+use Rector\Php81\Rector\ClassMethod\NewInInitializerRector;
 use Rector\PHPUnit\AnnotationsToAttributes\Rector\Class_\AnnotationWithValueToAttributeRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\YieldDataProviderRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
@@ -58,7 +59,7 @@ use Rector\ValueObject\PhpVersion;
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->sets([
         SetList::DEAD_CODE,
-        LevelSetList::UP_TO_PHP_74,
+        LevelSetList::UP_TO_PHP_81,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         PHPUnitSetList::PHPUNIT_100,
     ]);
@@ -94,7 +95,7 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     // Set the target version for refactoring
-    $rectorConfig->phpVersion(PhpVersion::PHP_74);
+    $rectorConfig->phpVersion(PhpVersion::PHP_81);
 
     // Auto-import fully qualified class names
     $rectorConfig->importNames();
@@ -130,6 +131,13 @@ return static function (RectorConfig $rectorConfig): void {
         RecastingRemovalRector::class => [
             // To check old Email Config file
             __DIR__ . '/src/Commands/Setup.php',
+        ],
+
+        // Ignore for some existing classes to prevent BC break
+        NewInInitializerRector::class => [
+            __DIR__ . '/src/Authentication/JWT/JWSEncoder.php',
+            __DIR__ . '/src/Authentication/JWT/JWSDecoder.php',
+            __DIR__ . '/src/Authentication/JWTManager.php',
         ],
     ]);
 

@@ -19,10 +19,7 @@ use CodeIgniter\Shield\Config\AuthJWT;
 
 class JWSEncoder
 {
-    protected Time $clock;
-    protected JWSAdapterInterface $jwsAdapter;
-
-    public function __construct(?JWSAdapterInterface $jwsAdapter = null, ?Time $clock = null)
+    public function __construct(protected ?JWSAdapterInterface $jwsAdapter = null, protected ?Time $clock = null)
     {
         $this->jwsAdapter = $jwsAdapter ?? new FirebaseAdapter();
         $this->clock      = $clock ?? new Time();
@@ -41,11 +38,11 @@ class JWSEncoder
         array $claims,
         ?int $ttl = null,
         $keyset = 'default',
-        ?array $headers = null
+        ?array $headers = null,
     ): string {
         assert(
             (array_key_exists('exp', $claims) && ($ttl !== null)) === false,
-            'Cannot pass $claims[\'exp\'] and $ttl at the same time.'
+            'Cannot pass $claims[\'exp\'] and $ttl at the same time.',
         );
 
         /** @var AuthJWT $config */
@@ -53,7 +50,7 @@ class JWSEncoder
 
         $payload = array_merge(
             $config->defaultClaims,
-            $claims
+            $claims,
         );
 
         if (! array_key_exists('iat', $claims)) {
@@ -71,7 +68,7 @@ class JWSEncoder
         return $this->jwsAdapter->encode(
             $payload,
             $keyset,
-            $headers
+            $headers,
         );
     }
 }

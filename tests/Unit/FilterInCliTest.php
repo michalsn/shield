@@ -19,6 +19,7 @@ use CodeIgniter\Shield\Filters\AuthRates;
 use CodeIgniter\Shield\Filters\ChainAuth;
 use CodeIgniter\Shield\Filters\SessionAuth;
 use CodeIgniter\Shield\Filters\TokenAuth;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Support\TestCase;
 
 /**
@@ -26,9 +27,7 @@ use Tests\Support\TestCase;
  */
 final class FilterInCliTest extends TestCase
 {
-    /**
-     * @dataProvider provideWhenInCliDoNothing
-     */
+    #[DataProvider('provideWhenInCliDoNothing')]
     public function testWhenInCliDoNothing(FilterInterface $filter): void
     {
         $clirequest = $this->createMock(CLIRequest::class);

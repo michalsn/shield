@@ -43,7 +43,6 @@ class Auth
      */
     public const SHIELD_VERSION = '1.1.0';
 
-    protected AuthConfig $config;
     protected ?Authentication $authenticate = null;
 
     /**
@@ -53,9 +52,8 @@ class Auth
 
     protected ?UserModel $userProvider = null;
 
-    public function __construct(AuthConfig $config)
+    public function __construct(protected AuthConfig $config)
     {
-        $this->config = $config;
     }
 
     protected function ensureAuthentication(): void

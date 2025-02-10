@@ -118,7 +118,7 @@ final class UserTest extends DatabaseTestCase
             $this->assertMatchesRegularExpression(
                 '/WHERE\s+.*\s+IN\s+\([^)]+\)/i',
                 $query,
-                'Identities were not obtained with the single query (missing "WHERE ... IN" condition)'
+                'Identities were not obtained with the single query (missing "WHERE ... IN" condition)',
             );
         }
 
@@ -136,7 +136,7 @@ final class UserTest extends DatabaseTestCase
     {
         fake(
             UserIdentityModel::class,
-            ['user_id' => $this->user->id, 'type' => Session::ID_TYPE_EMAIL_PASSWORD, 'secret' => 'foo@example.com']
+            ['user_id' => $this->user->id, 'type' => Session::ID_TYPE_EMAIL_PASSWORD, 'secret' => 'foo@example.com'],
         );
 
         // No logins found.
@@ -144,11 +144,11 @@ final class UserTest extends DatabaseTestCase
 
         fake(
             LoginModel::class,
-            ['id_type' => 'email', 'identifier' => $this->user->email, 'user_id' => $this->user->id]
+            ['id_type' => 'email', 'identifier' => $this->user->email, 'user_id' => $this->user->id],
         );
         $login2 = fake(
             LoginModel::class,
-            ['id_type' => 'email', 'identifier' => $this->user->email, 'user_id' => $this->user->id]
+            ['id_type' => 'email', 'identifier' => $this->user->email, 'user_id' => $this->user->id],
         );
         fake(
             LoginModel::class,
@@ -157,7 +157,7 @@ final class UserTest extends DatabaseTestCase
                 'identifier' => $this->user->email,
                 'user_id'    => $this->user->id,
                 'success'    => false,
-            ]
+            ],
         );
 
         $last = $this->user->lastLogin();
@@ -171,7 +171,7 @@ final class UserTest extends DatabaseTestCase
     {
         fake(
             UserIdentityModel::class,
-            ['user_id' => $this->user->id, 'type' => Session::ID_TYPE_EMAIL_PASSWORD, 'secret' => 'foo@example.com']
+            ['user_id' => $this->user->id, 'type' => Session::ID_TYPE_EMAIL_PASSWORD, 'secret' => 'foo@example.com'],
         );
 
         // No logins found.
@@ -179,7 +179,7 @@ final class UserTest extends DatabaseTestCase
 
         $login1 = fake(
             LoginModel::class,
-            ['id_type' => 'email', 'identifier' => $this->user->email, 'user_id' => $this->user->id]
+            ['id_type' => 'email', 'identifier' => $this->user->email, 'user_id' => $this->user->id],
         );
 
         // The very most login is skipped.
@@ -187,7 +187,7 @@ final class UserTest extends DatabaseTestCase
 
         fake(
             LoginModel::class,
-            ['id_type' => 'email', 'identifier' => $this->user->email, 'user_id' => $this->user->id]
+            ['id_type' => 'email', 'identifier' => $this->user->email, 'user_id' => $this->user->id],
         );
         fake(
             LoginModel::class,
@@ -196,7 +196,7 @@ final class UserTest extends DatabaseTestCase
                 'identifier' => $this->user->email,
                 'user_id'    => $this->user->id,
                 'success'    => false,
-            ]
+            ],
         );
 
         $previous = $this->user->previousLogin();
