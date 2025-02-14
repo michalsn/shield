@@ -57,10 +57,12 @@ public $views = [
 ## Defining New Actions
 
 While the provided email-based activation and 2FA will work for many sites, others will have different
-needs, like using SMS to verify or something completely different. Actions have only one requirement:
-they must implement `CodeIgniter\Shield\Authentication\Actions\ActionInterface`.
+needs, like using SMS to verify or something completely different. Custom actions must adhere to the following requirements:
 
-The interface defines three methods for `ActionController`:
+1. The class name for a "register" action must end with the suffix `Activator` (e.g., `SMSActivator`) to ensure consistency.
+2. All custom actions must implement the `CodeIgniter\Shield\Authentication\Actions\ActionInterface`.
+
+The `ActionInterface` defines three required methods that must be implemented to ensure the action integrates properly with the `ActionController`.
 
 **show()** should display the initial page the user lands on immediately after the authentication task,
 like login. It will typically display instructions to the user and provide an action to take, like
