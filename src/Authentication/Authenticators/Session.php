@@ -927,9 +927,9 @@ class Session implements AuthenticatorInterface
 
     private function calcExpires(): Time
     {
-        $timestamp = Time::now()->getTimestamp() + setting('Auth.sessionConfig')['rememberLength'];
+        $rememberLength = setting('Auth.sessionConfig')['rememberLength'];
 
-        return Time::createFromTimestamp($timestamp);
+        return Time::now()->addSeconds($rememberLength);
     }
 
     /**
